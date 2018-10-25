@@ -1,0 +1,1377 @@
+
+Sub Start_btn()
+  Application.ScreenUpdating = False
+    Application.DisplayAlerts = False
+    Application.EnableEvents = False
+    Application.Calculation = xlCalculationManual
+
+Dim FindString As String
+Dim cprng As Range
+Dim offrng As Range
+Dim rng As Range
+Dim nrng As Range
+Dim offnrng As Range
+Dim lastRow As String
+ActiveWorkbook.Sheets("Print").Select
+Set cprng = ActiveWorkbook.Sheets("Print").Range("A1")
+Set offrng = cprng.Offset(4, 0) 'A5
+
+
+Call Clear_Labels
+Call A3LabelingAuto
+lastRow = ActiveWorkbook.Worksheets("DataBase").Range("A10000").End(xlUp).Row + 3
+ 
+Dim DB_Ver As Integer 
+Dim DB_Hor As Integer  
+Dim Pr_Ver As Integer  
+Dim Pr_Hor As Integer  
+Dim lab_ver As Integer
+Dim lab_hor As Integer 
+Dim page As Integer    
+Dim of_ver As Integer  
+Dim of_hor As Integer  
+Dim name_ver As Integer
+Dim number_ver As Integer
+Dim name_hor As Integer
+Dim borders As Integer
+Dim celltextB7 As String
+DB_Hor = 1
+page = 1
+Pr_Ver = 1
+Pr_Hor = 1
+of_ver = 1
+of_hor = 1
+lab_hor = 1
+lab_ver = 1
+name_ver = 1
+number_ver = 2
+
+celltxtB7 = ActiveWorkbook.Worksheets("Menu").Range("B2").Value
+ActiveWorkbook.Worksheets("DataBase").Cells.Replace "#N/A", "", xlWhole 'mahame N/A
+For DB_Ver = 3 To lastRow
+  
+ 
+    If ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver - 1, DB_Hor) = "" Then  'aei a aaoaaacaoa eeaoeaoa a i?acia
+
+    Exit Sub
+        
+    End If
+    
+        If lab_ver > 7 Then 
+        lab_hor = lab_hor + 1
+        lab_ver = 1
+        Pr_Ver = 1
+        of_ver = 1
+        of_hor = of_hor + 3
+        Pr_Hor = Pr_Hor + 3
+      '  MsgBox "i?aieiaaaia a neaaaaua eieiia i?e i?eioa/eaiaieeoa" & "Pr_Ver = " & Pr_Ver & " Pr_hor = " & Pr_Hor
+
+        End If
+       
+        If lab_hor > 6 Then 'aei a?iy?a ia oi?eciioaeieoa eaiaiee a iaa 5, oiaaaa aa i?aieia eui neaaaauaoa no?aieoa
+     'MsgBox Lab_Hor & "aiaaayia ia no?aieoa"
+        lab_hor = 1
+        page = page + 1
+        End If
+        
+                
+        If ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor) = "" Then  'aei a aaoaaacaoa eeaoeaoa a i?acia
+        DB_Ver = 3 '?anaoie ia 3 ?aa a aaoaaacaoa
+        DB_Hor = DB_Hor + 1 'ioeae eui neaaaauaoa eieiia a aaoaaacaoa
+        lastRow = ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor).End(xlDown).Row  'i?aianoe i?iiaieeaaoa eano?ie a neaaaauaoa eieiia eaoi na ?ao?aoia
+       ' MsgBox lastRow
+        End If
+    
+    
+    
+        If ActiveWorkbook.Worksheets("Print").Cells(Pr_Ver, Pr_Hor) = "" Then  'aei eaiaieaoa a i?eioa a i?acia, eiie?ae iauaoa io aaoaaacaoa oai
+       ' MsgBox "eaiaieaoa a i?eioa a i?acia, neaaaa eiie?aia" & "pr_ver = " & Pr_Ver & "pr_hor = " & Pr_Hor & "of_ver = " & of_ver & "of_hor = " & of_hor
+      ' MsgBox "of_ver = " & of_ver & "of_hor = " & of_hor
+    Set offrng = cprng.Offset(5, 1) 'A5
+   ' offrng.Range(Cells(of_ver + 1, of_hor + 1), Cells(of_ver, of_hor + 3)).Select
+    ActiveWorkbook.Sheets("Print").Select
+     offrng.Range(Cells(of_ver, of_hor), Cells(of_ver, of_hor + 2)).Select
+
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlCenter
+        .WrapText = True
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = False
+    End With
+    Selection.Merge
+    offrng.Range(Cells(of_ver + 1, of_hor), Cells(of_ver + 2, of_hor + 2)).Select
+ 
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlCenter
+        .WrapText = False
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = False
+    End With
+    Selection.Merge
+    offrng.Range(Cells(of_ver + 3, of_hor), Cells(of_ver + 3, of_hor + 2)).Select
+
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlCenter
+        .WrapText = True
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = False
+    End With
+    Selection.Merge
+    offrng.Range(Cells(of_ver + 4, of_hor), Cells(of_ver + 4, of_hor + 2)).Select
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlCenter
+        .WrapText = True
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = False
+    End With
+    Selection.Merge
+    offrng.Range(Cells(of_ver, of_hor), Cells(of_ver + 4, of_hor + 2)).Select
+ 
+       Selection.borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.borders(xlDiagonalUp).LineStyle = xlNone
+    With Selection.borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    With Selection.borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    With Selection.borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    With Selection.borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    With Selection.borders(xlInsideVertical)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    With Selection.borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    Selection.borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.borders(xlDiagonalUp).LineStyle = xlNone
+    With Selection.borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlMedium
+    End With
+    With Selection.borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlMedium
+    End With
+    With Selection.borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlMedium
+    End With
+    With Selection.borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlMedium
+    End With
+    With Selection.borders(xlInsideVertical)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    With Selection.borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+
+       If InStr(1, celltxtB7, "L3") Then
+      '  MsgBox "ioaaoyaa a i?aiaaai"
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .ThemeColor = xlThemeColorAccent2
+        .TintAndShade = 0
+        .PatternTintAndShade = 0
+    End With
+      
+     ElseIf InStr(1, celltxtB7, "L2") Then
+       ' MsgBox "ioaaoyaa a caeaii"
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = RGB(54, 234, 54)
+        .TintAndShade = 0
+        .PatternTintAndShade = 0
+    End With
+   
+     ElseIf InStr(1, celltxtB7, "L1") Then
+       ' MsgBox "ioaaoyaa a aueoi"
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 65535
+        .TintAndShade = 0
+        .PatternTintAndShade = 0
+    End With
+    
+    ElseIf InStr(1, celltxtB7, "L4") Then
+       ' MsgBox "ioaaoyaa a neiui"
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = RGB(52, 204, 255)
+        .TintAndShade = 0
+        .PatternTintAndShade = 0
+    End With
+
+    End If
+  
+       borders = 1
+       
+       If borders = 1 Then
+       
+       Set offrng = cprng.Offset(4, 0) 'A5
+        If ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor) = "FS1" Then
+    
+            offrng.Offset(of_ver, of_hor).Value = "Oeia 1"
+            offrng.Offset(of_ver + 1, of_hor).Value = ActiveWorkbook.Worksheets("DataBase").Cells(name_ver, DB_Hor) & " " & ActiveWorkbook.Worksheets("DataBase").Cells(number_ver, DB_Hor)
+            offrng.Offset(of_ver + 3, of_hor).Value = "FS1"
+            'offrng.Offset(of_ver + 4, of_hor).Value = "Rail 1"
+        ElseIf ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor) = "FS2" Then
+            offrng.Offset(of_ver, of_hor).Value = "Oeia 2"
+            offrng.Offset(of_ver + 1, of_hor).Value = ActiveWorkbook.Worksheets("DataBase").Cells(name_ver, DB_Hor) & " " & ActiveWorkbook.Worksheets("DataBase").Cells(number_ver, DB_Hor)
+            offrng.Offset(of_ver + 3, of_hor).Value = "FS2"
+           ' offrng.Offset(of_ver + 4, of_hor).Value = "Rail 2"
+        ElseIf ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor) = "FS3" Then
+            offrng.Offset(of_ver, of_hor).Value = "Oeia 3"
+            offrng.Offset(of_ver + 1, of_hor).Value = ActiveWorkbook.Worksheets("DataBase").Cells(name_ver, DB_Hor) & " " & ActiveWorkbook.Worksheets("DataBase").Cells(number_ver, DB_Hor)
+            offrng.Offset(of_ver + 3, of_hor).Value = "FS3"
+           ' offrng.Offset(of_ver + 4, of_hor).Value = "Rail 3"
+        ElseIf ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor) = "FS4" Then
+            offrng.Offset(of_ver, of_hor).Value = "Oeia 4"
+            offrng.Offset(of_ver + 1, of_hor).Value = ActiveWorkbook.Worksheets("DataBase").Cells(name_ver, DB_Hor) & " " & ActiveWorkbook.Worksheets("DataBase").Cells(number_ver, DB_Hor)
+            offrng.Offset(of_ver + 3, of_hor).Value = "FS4"
+           ' offrng.Offset(of_ver + 4, of_hor).Value = "Rail 4"
+        ElseIf ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor) = "FS5" Then
+            offrng.Offset(of_ver, of_hor).Value = "Oeia 5"
+            offrng.Offset(of_ver + 1, of_hor).Value = ActiveWorkbook.Worksheets("DataBase").Cells(name_ver, DB_Hor) & " " & ActiveWorkbook.Worksheets("DataBase").Cells(number_ver, DB_Hor)
+            offrng.Offset(of_ver + 3, of_hor).Value = "FS5"
+          '  offrng.Offset(of_ver + 4, of_hor).Value = "Rail 5"
+        ElseIf ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor) = "FS6" Then
+            offrng.Offset(of_ver, of_hor).Value = "Oeia 6"
+            offrng.Offset(of_ver + 1, of_hor).Value = ActiveWorkbook.Worksheets("DataBase").Cells(name_ver, DB_Hor) & " " & ActiveWorkbook.Worksheets("DataBase").Cells(number_ver, DB_Hor)
+            offrng.Offset(of_ver + 3, of_hor).Value = "FS6"
+           ' offrng.Offset(of_ver + 4, of_hor).Value = "Rail 6"
+        ElseIf ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor) = "FS7" Then
+            offrng.Offset(of_ver, of_hor).Value = "Oeia 7"
+            offrng.Offset(of_ver + 1, of_hor).Value = ActiveWorkbook.Worksheets("DataBase").Cells(name_ver, DB_Hor) & " " & ActiveWorkbook.Worksheets("DataBase").Cells(number_ver, DB_Hor)
+            offrng.Offset(of_ver + 3, of_hor).Value = "FS7"
+          '  offrng.Offset(of_ver + 4, of_hor).Value = "Rail 7"
+        ElseIf ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor) = "FS8" Then
+            offrng.Offset(of_ver, of_hor).Value = "Oeia 8"
+            offrng.Offset(of_ver + 1, of_hor).Value = ActiveWorkbook.Worksheets("DataBase").Cells(name_ver, DB_Hor) & " " & ActiveWorkbook.Worksheets("DataBase").Cells(number_ver, DB_Hor)
+            offrng.Offset(of_ver + 3, of_hor).Value = "FS8"
+          '  offrng.Offset(of_ver + 4, of_hor).Value = "Rail 8"
+        ElseIf ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor) = "FS9" Then
+            offrng.Offset(of_ver, of_hor).Value = "Oeia 9"
+            offrng.Offset(of_ver + 1, of_hor).Value = ActiveWorkbook.Worksheets("DataBase").Cells(name_ver, DB_Hor) & " " & ActiveWorkbook.Worksheets("DataBase").Cells(number_ver, DB_Hor)
+            offrng.Offset(of_ver + 3, of_hor).Value = "FS9"
+          '  offrng.Offset(of_ver + 4, of_hor).Value = "Rail 9"
+        
+        
+        ElseIf ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor) = "LS1" Then
+            offrng.Offset(of_ver, of_hor).Value = "Eyaa Oeia 1"
+            offrng.Offset(of_ver + 1, of_hor).Value = ActiveWorkbook.Worksheets("DataBase").Cells(name_ver, DB_Hor) & " " & ActiveWorkbook.Worksheets("DataBase").Cells(number_ver, DB_Hor)
+            offrng.Offset(of_ver + 3, of_hor).Value = "LS1"
+           ' offrng.Offset(of_ver + 4, of_hor).Value = "Left Rail 1"
+        ElseIf ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor) = "LS2" Then
+            offrng.Offset(of_ver, of_hor).Value = "Eyaa Oeia 2"
+            offrng.Offset(of_ver + 1, of_hor).Value = ActiveWorkbook.Worksheets("DataBase").Cells(name_ver, DB_Hor) & " " & ActiveWorkbook.Worksheets("DataBase").Cells(number_ver, DB_Hor)
+            offrng.Offset(of_ver + 3, of_hor).Value = "LS2"
+           ' offrng.Offset(of_ver + 4, of_hor).Value = "Left Rail 2"
+        ElseIf ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor) = "LS3" Then
+            offrng.Offset(of_ver, of_hor).Value = "Eyaa Oeia 3"
+            offrng.Offset(of_ver + 1, of_hor).Value = ActiveWorkbook.Worksheets("DataBase").Cells(name_ver, DB_Hor) & " " & ActiveWorkbook.Worksheets("DataBase").Cells(number_ver, DB_Hor)
+            offrng.Offset(of_ver + 3, of_hor).Value = "LS3"
+           ' offrng.Offset(of_ver + 4, of_hor).Value = "Left Rail 3"
+        ElseIf ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor) = "LS4" Then
+            offrng.Offset(of_ver, of_hor).Value = "Eyaa Oeia 4"
+            offrng.Offset(of_ver + 1, of_hor).Value = ActiveWorkbook.Worksheets("DataBase").Cells(name_ver, DB_Hor) & " " & ActiveWorkbook.Worksheets("DataBase").Cells(number_ver, DB_Hor)
+            offrng.Offset(of_ver + 3, of_hor).Value = "LS4"
+           ' offrng.Offset(of_ver + 4, of_hor).Value = "Left Rail 4"
+        ElseIf ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor) = "LS5" Then
+            offrng.Offset(of_ver, of_hor).Value = "Eyaa Oeia 5"
+            offrng.Offset(of_ver + 1, of_hor).Value = ActiveWorkbook.Worksheets("DataBase").Cells(name_ver, DB_Hor) & " " & ActiveWorkbook.Worksheets("DataBase").Cells(number_ver, DB_Hor)
+            offrng.Offset(of_ver + 3, of_hor).Value = "LS5"
+           ' offrng.Offset(of_ver + 4, of_hor).Value = "Left Rail 5"
+        ElseIf ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor) = "LS6" Then
+            offrng.Offset(of_ver, of_hor).Value = "Eyaa Oeia 6"
+            offrng.Offset(of_ver + 1, of_hor).Value = ActiveWorkbook.Worksheets("DataBase").Cells(name_ver, DB_Hor) & " " & ActiveWorkbook.Worksheets("DataBase").Cells(number_ver, DB_Hor)
+            offrng.Offset(of_ver + 3, of_hor).Value = "LS6"
+           ' offrng.Offset(of_ver + 4, of_hor).Value = "Left Rail 6"
+        ElseIf ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor) = "LS7" Then
+            offrng.Offset(of_ver, of_hor).Value = "Eyaa Oeia 7"
+            offrng.Offset(of_ver + 1, of_hor).Value = ActiveWorkbook.Worksheets("DataBase").Cells(name_ver, DB_Hor) & " " & ActiveWorkbook.Worksheets("DataBase").Cells(number_ver, DB_Hor)
+            offrng.Offset(of_ver + 3, of_hor).Value = "LS7"
+           ' offrng.Offset(of_ver + 4, of_hor).Value = "Left Rail 7"
+        ElseIf ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor) = "LS8" Then
+            offrng.Offset(of_ver, of_hor).Value = "Eyaa Oeia 8"
+            offrng.Offset(of_ver + 1, of_hor).Value = ActiveWorkbook.Worksheets("DataBase").Cells(name_ver, DB_Hor) & " " & ActiveWorkbook.Worksheets("DataBase").Cells(number_ver, DB_Hor)
+            offrng.Offset(of_ver + 3, of_hor).Value = "LS8"
+           ' offrng.Offset(of_ver + 4, of_hor).Value = "Left Rail 8"
+        ElseIf ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor) = "LS9" Then
+            offrng.Offset(of_ver, of_hor).Value = "Eyaa Oeia 9"
+            offrng.Offset(of_ver + 1, of_hor).Value = ActiveWorkbook.Worksheets("DataBase").Cells(name_ver, DB_Hor) & " " & ActiveWorkbook.Worksheets("DataBase").Cells(number_ver, DB_Hor)
+            offrng.Offset(of_ver + 3, of_hor).Value = "LS9"
+          '  offrng.Offset(of_ver + 4, of_hor).Value = "Left Rail 9"
+            
+        ElseIf ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor) = "RS1" Then
+            offrng.Offset(of_ver, of_hor).Value = "Aynia Oeia 1"
+            offrng.Offset(of_ver + 1, of_hor).Value = ActiveWorkbook.Worksheets("DataBase").Cells(name_ver, DB_Hor) & " " & ActiveWorkbook.Worksheets("DataBase").Cells(number_ver, DB_Hor)
+            offrng.Offset(of_ver + 3, of_hor).Value = "RS1"
+           ' offrng.Offset(of_ver + 4, of_hor).Value = "Right Rail 1"
+        ElseIf ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor) = "RS2" Then
+            offrng.Offset(of_ver, of_hor).Value = "Aynia Oeia 2"
+            offrng.Offset(of_ver + 1, of_hor).Value = ActiveWorkbook.Worksheets("DataBase").Cells(name_ver, DB_Hor) & " " & ActiveWorkbook.Worksheets("DataBase").Cells(number_ver, DB_Hor)
+            offrng.Offset(of_ver + 3, of_hor).Value = "RS2"
+          '  offrng.Offset(of_ver + 4, of_hor).Value = "Right Rail 2"
+        ElseIf ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor) = "RS3" Then
+            offrng.Offset(of_ver, of_hor).Value = "Aynia Oeia 3"
+            offrng.Offset(of_ver + 1, of_hor).Value = ActiveWorkbook.Worksheets("DataBase").Cells(name_ver, DB_Hor) & " " & ActiveWorkbook.Worksheets("DataBase").Cells(number_ver, DB_Hor)
+            offrng.Offset(of_ver + 3, of_hor).Value = "RS3"
+           ' offrng.Offset(of_ver + 4, of_hor).Value = "Right Rail 3"
+        ElseIf ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor) = "RS4" Then
+            offrng.Offset(of_ver, of_hor).Value = "Aynia Oeia 4"
+            offrng.Offset(of_ver + 1, of_hor).Value = ActiveWorkbook.Worksheets("DataBase").Cells(name_ver, DB_Hor) & " " & ActiveWorkbook.Worksheets("DataBase").Cells(number_ver, DB_Hor)
+            offrng.Offset(of_ver + 3, of_hor).Value = "RS4"
+          '  offrng.Offset(of_ver + 4, of_hor).Value = "Right Rail 4"
+        ElseIf ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor) = "RS5" Then
+            offrng.Offset(of_ver, of_hor).Value = "Aynia Oeia 5"
+            offrng.Offset(of_ver + 1, of_hor).Value = ActiveWorkbook.Worksheets("DataBase").Cells(name_ver, DB_Hor) & " " & ActiveWorkbook.Worksheets("DataBase").Cells(number_ver, DB_Hor)
+            offrng.Offset(of_ver + 3, of_hor).Value = "RS5"
+          '  offrng.Offset(of_ver + 4, of_hor).Value = "Right Rail 5"
+        ElseIf ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor) = "RS6" Then
+            offrng.Offset(of_ver, of_hor).Value = "Aynia Oeia 6"
+            offrng.Offset(of_ver + 1, of_hor).Value = ActiveWorkbook.Worksheets("DataBase").Cells(name_ver, DB_Hor) & " " & ActiveWorkbook.Worksheets("DataBase").Cells(number_ver, DB_Hor)
+            offrng.Offset(of_ver + 3, of_hor).Value = "RS6"
+           ' offrng.Offset(of_ver + 4, of_hor).Value = "Right Rail 6"
+        ElseIf ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor) = "RS7" Then
+            offrng.Offset(of_ver, of_hor).Value = "Aynia Oeia 7"
+            offrng.Offset(of_ver + 1, of_hor).Value = ActiveWorkbook.Worksheets("DataBase").Cells(name_ver, DB_Hor) & " " & ActiveWorkbook.Worksheets("DataBase").Cells(number_ver, DB_Hor)
+            offrng.Offset(of_ver + 3, of_hor).Value = "RS7"
+            'offrng.Offset(of_ver + 4, of_hor).Value = "Right Rail 7"
+        ElseIf ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor) = "RS8" Then
+            offrng.Offset(of_ver, of_hor).Value = "Aynia Oeia 8"
+            offrng.Offset(of_ver + 1, of_hor).Value = ActiveWorkbook.Worksheets("DataBase").Cells(name_ver, DB_Hor) & " " & ActiveWorkbook.Worksheets("DataBase").Cells(number_ver, DB_Hor)
+            offrng.Offset(of_ver + 3, of_hor).Value = "RS8"
+         '   offrng.Offset(of_ver + 4, of_hor).Value = "Right Rail 8"
+        ElseIf ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor) = "RS9" Then
+            offrng.Offset(of_ver, of_hor).Value = "Aynia Oeia 9"
+            offrng.Offset(of_ver + 1, of_hor).Value = ActiveWorkbook.Worksheets("DataBase").Cells(name_ver, DB_Hor) & " " & ActiveWorkbook.Worksheets("DataBase").Cells(number_ver, DB_Hor)
+            offrng.Offset(of_ver + 3, of_hor).Value = "RS9"
+         '   offrng.Offset(of_ver + 4, of_hor).Value = "Right Rail 9"
+            
+        ElseIf ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor) = "LD1" Then
+            offrng.Offset(of_ver, of_hor).Value = "Eyaa A?aoa 1"
+            offrng.Offset(of_ver + 1, of_hor).Value = ActiveWorkbook.Worksheets("DataBase").Cells(name_ver, DB_Hor) & " " & ActiveWorkbook.Worksheets("DataBase").Cells(number_ver, DB_Hor)
+            offrng.Offset(of_ver + 3, of_hor).Value = "LD1"
+         '   offrng.Offset(of_ver + 4, of_hor).Value = "Left Door 1"
+        ElseIf ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor) = "LD2" Then
+            offrng.Offset(of_ver, of_hor).Value = "Eyaa A?aoa 2"
+            offrng.Offset(of_ver + 1, of_hor).Value = ActiveWorkbook.Worksheets("DataBase").Cells(name_ver, DB_Hor) & " " & ActiveWorkbook.Worksheets("DataBase").Cells(number_ver, DB_Hor)
+            offrng.Offset(of_ver + 3, of_hor).Value = "LD2"
+         '   offrng.Offset(of_ver + 4, of_hor).Value = "Left Door 2"
+        ElseIf ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor) = "LD3" Then
+            offrng.Offset(of_ver, of_hor).Value = "Eyaa A?aoa 3"
+            offrng.Offset(of_ver + 1, of_hor).Value = ActiveWorkbook.Worksheets("DataBase").Cells(name_ver, DB_Hor) & " " & ActiveWorkbook.Worksheets("DataBase").Cells(number_ver, DB_Hor)
+            offrng.Offset(of_ver + 3, of_hor).Value = "LD3"
+           ' offrng.Offset(of_ver + 4, of_hor).Value = "Left Door 3"
+        ElseIf ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor) = "LD4" Then
+            offrng.Offset(of_ver, of_hor).Value = "Eyaa A?aoa 4"
+            offrng.Offset(of_ver + 1, of_hor).Value = ActiveWorkbook.Worksheets("DataBase").Cells(name_ver, DB_Hor) & " " & ActiveWorkbook.Worksheets("DataBase").Cells(number_ver, DB_Hor)
+            offrng.Offset(of_ver + 3, of_hor).Value = "LD4"
+          '  offrng.Offset(of_ver + 4, of_hor).Value = "Left Door 4"
+        ElseIf ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor) = "LD5" Then
+            offrng.Offset(of_ver, of_hor).Value = "Eyaa A?aoa 5"
+            offrng.Offset(of_ver + 1, of_hor).Value = ActiveWorkbook.Worksheets("DataBase").Cells(name_ver, DB_Hor) & " " & ActiveWorkbook.Worksheets("DataBase").Cells(number_ver, DB_Hor)
+            offrng.Offset(of_ver + 3, of_hor).Value = "LD5"
+           ' offrng.Offset(of_ver + 4, of_hor).Value = "Left Door 5"
+        ElseIf ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor) = "LD6" Then
+            offrng.Offset(of_ver, of_hor).Value = "Eyaa A?aoa 6"
+            offrng.Offset(of_ver + 1, of_hor).Value = ActiveWorkbook.Worksheets("DataBase").Cells(name_ver, DB_Hor) & " " & ActiveWorkbook.Worksheets("DataBase").Cells(number_ver, DB_Hor)
+            offrng.Offset(of_ver + 3, of_hor).Value = "LD6"
+          '  offrng.Offset(of_ver + 4, of_hor).Value = "Left Door 6"
+        ElseIf ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor) = "LD7" Then
+            offrng.Offset(of_ver, of_hor).Value = "Eyaa A?aoa 7"
+            offrng.Offset(of_ver + 1, of_hor).Value = ActiveWorkbook.Worksheets("DataBase").Cells(name_ver, DB_Hor) & " " & ActiveWorkbook.Worksheets("DataBase").Cells(number_ver, DB_Hor)
+            offrng.Offset(of_ver + 3, of_hor).Value = "LD7"
+          '  offrng.Offset(of_ver + 4, of_hor).Value = "Left Door 7"
+        ElseIf ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor) = "LD8" Then
+            offrng.Offset(of_ver, of_hor).Value = "Eyaa A?aoa 8"
+            offrng.Offset(of_ver + 1, of_hor).Value = ActiveWorkbook.Worksheets("DataBase").Cells(name_ver, DB_Hor) & " " & ActiveWorkbook.Worksheets("DataBase").Cells(number_ver, DB_Hor)
+            offrng.Offset(of_ver + 3, of_hor).Value = "LD8"
+          '  offrng.Offset(of_ver + 4, of_hor).Value = "Left Door 8"
+        ElseIf ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor) = "LD9" Then
+            offrng.Offset(of_ver, of_hor).Value = "Eyaa A?aoa 9"
+            offrng.Offset(of_ver + 1, of_hor).Value = ActiveWorkbook.Worksheets("DataBase").Cells(name_ver, DB_Hor) & " " & ActiveWorkbook.Worksheets("DataBase").Cells(number_ver, DB_Hor)
+            offrng.Offset(of_ver + 3, of_hor).Value = "LD9"
+         '   offrng.Offset(of_ver + 4, of_hor).Value = "Left Door 9"
+            
+        ElseIf ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor) = "RD1" Then
+            offrng.Offset(of_ver, of_hor).Value = "Aynia A?aoa 1"
+            offrng.Offset(of_ver + 1, of_hor).Value = ActiveWorkbook.Worksheets("DataBase").Cells(name_ver, DB_Hor) & " " & ActiveWorkbook.Worksheets("DataBase").Cells(number_ver, DB_Hor)
+            offrng.Offset(of_ver + 3, of_hor).Value = "RD1"
+         '   offrng.Offset(of_ver + 4, of_hor).Value = "Right Door 1"
+        ElseIf ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor) = "RD2" Then
+            offrng.Offset(of_ver, of_hor).Value = "Aynia A?aoa 2"
+            offrng.Offset(of_ver + 1, of_hor).Value = ActiveWorkbook.Worksheets("DataBase").Cells(name_ver, DB_Hor) & " " & ActiveWorkbook.Worksheets("DataBase").Cells(number_ver, DB_Hor)
+            offrng.Offset(of_ver + 3, of_hor).Value = "RD2"
+         '   offrng.Offset(of_ver + 4, of_hor).Value = "Right Door 2"
+        ElseIf ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor) = "RD3" Then
+            offrng.Offset(of_ver, of_hor).Value = "Aynia A?aoa 3"
+            offrng.Offset(of_ver + 1, of_hor).Value = ActiveWorkbook.Worksheets("DataBase").Cells(name_ver, DB_Hor) & " " & ActiveWorkbook.Worksheets("DataBase").Cells(number_ver, DB_Hor)
+            offrng.Offset(of_ver + 3, of_hor).Value = "RD3"
+        '    offrng.Offset(of_ver + 4, of_hor).Value = "Right Door 3"
+        ElseIf ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor) = "RD4" Then
+            offrng.Offset(of_ver, of_hor).Value = "Aynia A?aoa 4"
+            offrng.Offset(of_ver + 1, of_hor).Value = ActiveWorkbook.Worksheets("DataBase").Cells(name_ver, DB_Hor) & " " & ActiveWorkbook.Worksheets("DataBase").Cells(number_ver, DB_Hor)
+            offrng.Offset(of_ver + 3, of_hor).Value = "RD4"
+         '   offrng.Offset(of_ver + 4, of_hor).Value = "Right Door 4"
+        ElseIf ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor) = "RD5" Then
+            offrng.Offset(of_ver, of_hor).Value = "Aynia A?aoa 5"
+            offrng.Offset(of_ver + 1, of_hor).Value = ActiveWorkbook.Worksheets("DataBase").Cells(name_ver, DB_Hor) & " " & ActiveWorkbook.Worksheets("DataBase").Cells(number_ver, DB_Hor)
+            offrng.Offset(of_ver + 3, of_hor).Value = "RD5"
+         '   offrng.Offset(of_ver + 4, of_hor).Value = "Right Door 5"
+        ElseIf ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor) = "RD6" Then
+            offrng.Offset(of_ver, of_hor).Value = "Aynia A?aoa 6"
+            offrng.Offset(of_ver + 1, of_hor).Value = ActiveWorkbook.Worksheets("DataBase").Cells(name_ver, DB_Hor) & " " & ActiveWorkbook.Worksheets("DataBase").Cells(number_ver, DB_Hor)
+            offrng.Offset(of_ver + 3, of_hor).Value = "RD6"
+          '  offrng.Offset(of_ver + 4, of_hor).Value = "Right Door 6"
+        ElseIf ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor) = "RD7" Then
+            offrng.Offset(of_ver, of_hor).Value = "Aynia A?aoa 7"
+            offrng.Offset(of_ver + 1, of_hor).Value = ActiveWorkbook.Worksheets("DataBase").Cells(name_ver, DB_Hor) & " " & ActiveWorkbook.Worksheets("DataBase").Cells(number_ver, DB_Hor)
+            offrng.Offset(of_ver + 3, of_hor).Value = "RD7"
+         '   offrng.Offset(of_ver + 4, of_hor).Value = "Right Door 7"
+        ElseIf ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor) = "RD8" Then
+            offrng.Offset(of_ver, of_hor).Value = "Aynia A?aoa 8"
+            offrng.Offset(of_ver + 1, of_hor).Value = ActiveWorkbook.Worksheets("DataBase").Cells(name_ver, DB_Hor) & " " & ActiveWorkbook.Worksheets("DataBase").Cells(number_ver, DB_Hor)
+            offrng.Offset(of_ver + 3, of_hor).Value = "RD8"
+          '  offrng.Offset(of_ver + 4, of_hor).Value = "Right Door 8"
+        ElseIf ActiveWorkbook.Worksheets("DataBase").Cells(DB_Ver, DB_Hor) = "RD9" Then
+            offrng.Offset(of_ver, of_hor).Value = "Aynia A?aoa 9"
+            offrng.Offset(of_ver + 1, of_hor).Value = ActiveWorkbook.Worksheets("DataBase").Cells(name_ver, DB_Hor) & " " & ActiveWorkbook.Worksheets("DataBase").Cells(number_ver, DB_Hor)
+            offrng.Offset(of_ver + 3, of_hor).Value = "RD9"
+            'offrng.Offset(of_ver + 4, of_hor).Value = "Right Door 9"
+        End If
+             
+             borders = 0
+             End If
+            
+        If ActiveWorkbook.Worksheets("Print").Cells(Pr_Ver, Pr_Hor) <> "" & lab_ver < 7 & lab_hor < 5 Then 'aei eaiaieaoa a i?eioa a iueia e aieaoi nia iia 35 eaiaiee eee n a?oae aoie aua eenouo
+                Pr_Ver = Pr_Ver + 5 'o?aieie eui neaaaauaoa eaiaiea n 4 ?aaa
+                lab_ver = lab_ver + 1 'oaaee?e a?iy?a ia aa?oeeaeie eaiaiee n aaei
+                of_ver = of_ver + 5
+            
+          
+               ' MsgBox "i?eieiaoia eui neaaaauaoa eaiaiea" & "Pr_Ver +4 = " & Pr_Ver & " lab_ver + 1 = " & Lab_Ver & "of_ver = " & of_ver & "of_hor = " & of_hor
+        End If
+        '  MsgBox "E?ae DB_Ver = " & DB_Ver & " DB_Hor = " & DB_Hor & " Pr_Ver = " & Pr_Ver & " Pr_Hor = " & Pr_Hor & " Lab_Ver = " & Lab_Ver & " Lab_Hor = " & Lab_Hor & " of_ver = " & of_ver & " of_hor = " & of_hor & " page = " & page & " LastRow = " & lastRow
+        
+     
+      
+       
+ 
+    
+
+
+End If
+Next DB_Ver
+  Application.ScreenUpdating = True
+    Application.DisplayAlerts = True
+    Application.EnableEvents = True
+    Application.Calculation = xlCalculationAutomatic
+End Sub
+
+
+Sub copy_to_work()
+
+    '------------------------------------------------
+    Application.ScreenUpdating = False
+    Application.DisplayAlerts = False
+    Application.EnableEvents = False
+    Application.Calculation = xlCalculationManual
+    '------------------------------------------------
+    
+
+
+Sub OpenManyFiles()
+
+    Sheets("DataBase").Select
+    ActiveSheet.Unprotect
+    
+'--------------------Speed up--------------------
+    Application.ScreenUpdating = False
+    Application.DisplayAlerts = False
+    Application.EnableEvents = False
+    Application.Calculation = xlCalculationManual
+'------------------------------------------------
+Call RoundedRectangle4_Click
+
+    Dim sFname As Variant
+    Dim i As Long
+    Dim wb1 As Workbook, wb2 As Workbook, wb3 As Workbook, wb4 As Workbook, wb5 As Workbook, wb6 As Workbook, wb7 As Workbook, wb8 As Workbook, wb9 As Workbook, wb10 As Workbook, _
+    wb11 As Workbook, wb12 As Workbook, wb13 As Workbook, wb14 As Workbook, wb15 As Workbook, wb As Workbook, wb16 As Workbook, wb17 As Workbook, wb18 As Workbook, _
+     wb19 As Workbook, wb20 As Workbook, wb21 As Workbook, wb22 As Workbook, wb23 As Workbook, wb24 As Workbook, wb25 As Workbook, wb26 As Workbook, wb27 As Workbook, wb28 As Workbook, wb29 As Workbook, wb30 As Workbook
+  
+    
+     
+     
+    
+    Dim rng As Range
+    Dim d_string As String
+    Dim a_string As String
+    
+    Dim i3 As Integer
+    Dim i2 As Integer
+    i2 = 1
+  
+    Set wb = ActiveWorkbook
+   
+    Set rng = wb.Worksheets("DataBase").Range("A1:AE500")
+    rng.ClearContents
+    
+    
+    j = 1
+    K = 1
+    On Error GoTo Label_1
+    sFname = Application.GetOpenFilename(, _
+        1, "Select One File To Open", , True)
+    On Error GoTo Label_1
+    If IsArray(sFname) Then
+        For i = LBound(sFname) To UBound(sFname)
+            Workbooks.Open sFname(i)
+            For j = 1 To 21
+                If i = 1 Then
+                Set wb1 = ActiveWorkbook
+                ElseIf i = 2 Then
+                Set wb2 = ActiveWorkbook
+                ElseIf i = 3 Then
+                Set wb3 = ActiveWorkbook
+                ElseIf i = 4 Then
+                Set wb4 = ActiveWorkbook
+                ElseIf i = 5 Then
+                Set wb5 = ActiveWorkbook
+                ElseIf i = 6 Then
+                Set wb6 = ActiveWorkbook
+                ElseIf i = 7 Then
+                Set wb7 = ActiveWorkbook
+                ElseIf i = 8 Then
+                Set wb8 = ActiveWorkbook
+                ElseIf i = 9 Then
+                Set wb9 = ActiveWorkbook
+                ElseIf i = 10 Then
+                Set wb10 = ActiveWorkbook
+                ElseIf i = 11 Then
+                Set wb11 = ActiveWorkbook
+                ElseIf i = 12 Then
+                Set wb12 = ActiveWorkbook
+                ElseIf i = 13 Then
+                Set wb13 = ActiveWorkbook
+                ElseIf i = 14 Then
+                Set wb14 = ActiveWorkbook
+                ElseIf i = 15 Then
+                Set wb15 = ActiveWorkbook
+                ElseIf i = 16 Then
+                Set wb16 = ActiveWorkbook
+                ElseIf i = 17 Then
+                Set wb17 = ActiveWorkbook
+                ElseIf i = 18 Then
+                Set wb18 = ActiveWorkbook
+                ElseIf i = 19 Then
+                Set wb19 = ActiveWorkbook
+                ElseIf i = 20 Then
+                Set wb20 = ActiveWorkbook
+                ElseIf i = 21 Then
+                Set wb21 = ActiveWorkbook
+                ElseIf i = 22 Then
+                Set wb22 = ActiveWorkbook
+                ElseIf i = 23 Then
+                Set wb23 = ActiveWorkbook
+                ElseIf i = 24 Then
+                Set wb24 = ActiveWorkbook
+                ElseIf i = 25 Then
+                Set wb25 = ActiveWorkbook
+                ElseIf i = 26 Then
+                Set wb26 = ActiveWorkbook
+                ElseIf i = 27 Then
+                Set wb27 = ActiveWorkbook
+                ElseIf i = 28 Then
+                Set wb28 = ActiveWorkbook
+                ElseIf i = 29 Then
+                Set wb29 = ActiveWorkbook
+                ElseIf i = 30 Then
+                Set wb30 = ActiveWorkbook
+                
+                End If
+            Next j
+        Next i
+        
+    End If
+    
+        Dim lastRowA As String
+        Dim lastRowD As String
+        Dim lastRow As Integer
+'---------------------------------------------------------------------------------------------------------------------------------------------------
+          On Error GoTo GetOut
+       If wb.Worksheets("DataBase").Range("A1").Value = "" Then
+         wb.Worksheets("DataBase").Range("A1").Value = wb1.Worksheets("Sheet1").Range("A3").Value
+         wb.Worksheets("DataBase").Range("A2").Value = wb1.Worksheets("Sheet1").Range("A5").Value
+         lastRow = wb1.Worksheets("Sheet1").Range("D65536").End(xlUp).Row + 5
+         lastRowA = "A" & lastRow
+         lastRowD = "D" & lastRow
+         wb.Worksheets("DataBase").Range("A3:" & lastRowA).Value = wb1.Worksheets("Sheet1").Range("D9:" & lastRowD).Value
+         wb1.Close
+        End If
+        
+        
+          On Error GoTo GetOut
+   If wb.Worksheets("DataBase").Range("B1").Value = "" Then
+        wb.Worksheets("DataBase").Range("B1").Value = wb2.Worksheets("Sheet1").Range("A3").Value
+        wb.Worksheets("DataBase").Range("B2").Value = wb2.Worksheets("Sheet1").Range("A5").Value
+         lastRow = wb2.Worksheets("Sheet1").Range("D65536").End(xlUp).Row + 5
+         lastRowA = "B" & lastRow
+         lastRowD = "D" & lastRow
+         wb.Worksheets("DataBase").Range("B3:" & lastRowA).Value = wb2.Worksheets("Sheet1").Range("D9:" & lastRowD).Value
+         wb2.Close
+        End If
+        
+        
+            On Error GoTo GetOut
+   If wb.Worksheets("DataBase").Range("C1").Value = "" Then
+        wb.Worksheets("DataBase").Range("C1").Value = wb3.Worksheets("Sheet1").Range("A3").Value
+        wb.Worksheets("DataBase").Range("C2").Value = wb3.Worksheets("Sheet1").Range("A5").Value
+         lastRow = wb3.Worksheets("Sheet1").Range("D65536").End(xlUp).Row + 5
+         lastRowA = "C" & lastRow
+         lastRowD = "D" & lastRow
+         wb.Worksheets("DataBase").Range("C3:" & lastRowA).Value = wb3.Worksheets("Sheet1").Range("D9:" & lastRowD).Value
+         wb3.Close
+        End If
+        
+        
+        
+            On Error GoTo GetOut
+   If wb.Worksheets("DataBase").Range("D1").Value = "" Then
+        wb.Worksheets("DataBase").Range("D1").Value = wb4.Worksheets("Sheet1").Range("A3").Value
+        wb.Worksheets("DataBase").Range("D2").Value = wb4.Worksheets("Sheet1").Range("A5").Value
+       lastRow = wb4.Worksheets("Sheet1").Range("D65536").End(xlUp).Row + 5
+         lastRowA = "D" & lastRow
+         lastRowD = "D" & lastRow
+         wb.Worksheets("DataBase").Range("D3:" & lastRowA).Value = wb4.Worksheets("Sheet1").Range("D9:" & lastRowD).Value
+         wb4.Close
+        End If
+        
+        
+        
+            On Error GoTo GetOut
+   If wb.Worksheets("DataBase").Range("E1").Value = "" Then
+        wb.Worksheets("DataBase").Range("E1").Value = wb5.Worksheets("Sheet1").Range("A3").Value
+        wb.Worksheets("DataBase").Range("E2").Value = wb5.Worksheets("Sheet1").Range("A5").Value
+        lastRow = wb5.Worksheets("Sheet1").Range("D65536").End(xlUp).Row + 5
+         lastRowA = "E" & lastRow
+         lastRowD = "D" & lastRow
+         wb.Worksheets("DataBase").Range("E3:" & lastRowA).Value = wb5.Worksheets("Sheet1").Range("D9:" & lastRowD).Value
+         wb5.Close
+        End If
+        
+        
+        
+            On Error GoTo GetOut
+   If wb.Worksheets("DataBase").Range("F1").Value = "" Then
+        wb.Worksheets("DataBase").Range("F1").Value = wb6.Worksheets("Sheet1").Range("A3").Value
+        wb.Worksheets("DataBase").Range("F2").Value = wb6.Worksheets("Sheet1").Range("A5").Value
+       lastRow = wb6.Worksheets("Sheet1").Range("D65536").End(xlUp).Row + 5
+         lastRowA = "F" & lastRow
+         lastRowD = "D" & lastRow
+         wb.Worksheets("DataBase").Range("F3:" & lastRowA).Value = wb6.Worksheets("Sheet1").Range("D9:" & lastRowD).Value
+         wb6.Close
+        End If
+        
+        
+        
+            On Error GoTo GetOut
+   If wb.Worksheets("DataBase").Range("G1").Value = "" Then
+        wb.Worksheets("DataBase").Range("G1").Value = wb7.Worksheets("Sheet1").Range("A3").Value
+        wb.Worksheets("DataBase").Range("G2").Value = wb7.Worksheets("Sheet1").Range("A5").Value
+       lastRow = wb7.Worksheets("Sheet1").Range("D65536").End(xlUp).Row + 5
+         lastRowA = "G" & lastRow
+         lastRowD = "D" & lastRow
+         wb.Worksheets("DataBase").Range("G3:" & lastRowA).Value = wb7.Worksheets("Sheet1").Range("D9:" & lastRowD).Value
+         wb7.Close
+        End If
+        
+        
+            On Error GoTo GetOut
+   If wb.Worksheets("DataBase").Range("H1").Value = "" Then
+        wb.Worksheets("DataBase").Range("H1").Value = wb8.Worksheets("Sheet1").Range("A3").Value
+        wb.Worksheets("DataBase").Range("H2").Value = wb8.Worksheets("Sheet1").Range("A5").Value
+       lastRow = wb8.Worksheets("Sheet1").Range("D65536").End(xlUp).Row + 5
+         lastRowA = "H" & lastRow
+         lastRowD = "D" & lastRow
+         wb.Worksheets("DataBase").Range("H3:" & lastRowA).Value = wb8.Worksheets("Sheet1").Range("D9:" & lastRowD).Value
+         wb8.Close
+        End If
+        
+        
+            On Error GoTo GetOut
+   If wb.Worksheets("DataBase").Range("I1").Value = "" Then
+        wb.Worksheets("DataBase").Range("I1").Value = wb9.Worksheets("Sheet1").Range("A3").Value
+        wb.Worksheets("DataBase").Range("I2").Value = wb9.Worksheets("Sheet1").Range("A5").Value
+       lastRow = wb9.Worksheets("Sheet1").Range("D65536").End(xlUp).Row + 5
+         lastRowA = "I" & lastRow
+         lastRowD = "D" & lastRow
+         wb.Worksheets("DataBase").Range("I3:" & lastRowA).Value = wb9.Worksheets("Sheet1").Range("D9:" & lastRowD).Value
+         wb9.Close
+        End If
+        
+        
+        
+            On Error GoTo GetOut
+   If wb.Worksheets("DataBase").Range("J1").Value = "" Then
+        wb.Worksheets("DataBase").Range("J1").Value = wb10.Worksheets("Sheet1").Range("A3").Value
+        wb.Worksheets("DataBase").Range("J2").Value = wb10.Worksheets("Sheet1").Range("A5").Value
+        lastRow = wb10.Worksheets("Sheet1").Range("D65536").End(xlUp).Row + 5
+         lastRowA = "J" & lastRow
+         lastRowD = "D" & lastRow
+         wb.Worksheets("DataBase").Range("J3:" & lastRowA).Value = wb10.Worksheets("Sheet1").Range("D9:" & lastRowD).Value
+         wb10.Close
+        End If
+        
+        
+        
+            On Error GoTo GetOut
+   If wb.Worksheets("DataBase").Range("K1").Value = "" Then
+        wb.Worksheets("DataBase").Range("K1").Value = wb11.Worksheets("Sheet1").Range("A3").Value
+        wb.Worksheets("DataBase").Range("K2").Value = wb11.Worksheets("Sheet1").Range("A5").Value
+        lastRow = wb11.Worksheets("Sheet1").Range("D65536").End(xlUp).Row + 5
+         lastRowA = "K" & lastRow
+         lastRowD = "D" & lastRow
+         wb.Worksheets("DataBase").Range("K3:" & lastRowA).Value = wb11.Worksheets("Sheet1").Range("D9:" & lastRowD).Value
+         wb11.Close
+        End If
+        
+        
+        
+            On Error GoTo GetOut
+   If wb.Worksheets("DataBase").Range("L1").Value = "" Then
+        wb.Worksheets("DataBase").Range("L1").Value = wb12.Worksheets("Sheet1").Range("A3").Value
+        wb.Worksheets("DataBase").Range("L2").Value = wb12.Worksheets("Sheet1").Range("A5").Value
+       lastRow = wb12.Worksheets("Sheet1").Range("D65536").End(xlUp).Row + 5
+         lastRowA = "L" & lastRow
+         lastRowD = "D" & lastRow
+         wb.Worksheets("DataBase").Range("L3:" & lastRowA).Value = wb12.Worksheets("Sheet1").Range("D9:" & lastRowD).Value
+         wb12.Close
+        End If
+        
+        
+            On Error GoTo GetOut
+   If wb.Worksheets("DataBase").Range("M1").Value = "" Then
+        wb.Worksheets("DataBase").Range("M1").Value = wb13.Worksheets("Sheet1").Range("A3").Value
+        wb.Worksheets("DataBase").Range("M2").Value = wb13.Worksheets("Sheet1").Range("A5").Value
+       lastRow = wb13.Worksheets("Sheet1").Range("D65536").End(xlUp).Row + 5
+         lastRowA = "M" & lastRow
+         lastRowD = "D" & lastRow
+         wb.Worksheets("DataBase").Range("M3:" & lastRowA).Value = wb13.Worksheets("Sheet1").Range("D9:" & lastRowD).Value
+         wb13.Close
+        End If
+        
+        
+        
+            On Error GoTo GetOut
+   If wb.Worksheets("DataBase").Range("N1").Value = "" Then
+        wb.Worksheets("DataBase").Range("N1").Value = wb14.Worksheets("Sheet1").Range("A3").Value
+        wb.Worksheets("DataBase").Range("N2").Value = wb14.Worksheets("Sheet1").Range("A5").Value
+
+        lastRow = wb14.Worksheets("Sheet1").Range("D65536").End(xlUp).Row + 5
+         lastRowA = "N" & lastRow
+         lastRowD = "D" & lastRow
+         wb.Worksheets("DataBase").Range("D3:" & lastRowA).Value = wb14.Worksheets("Sheet1").Range("D9:" & lastRowD).Value
+         wb14.Close
+        End If
+        
+        
+        
+            On Error GoTo GetOut
+   If wb.Worksheets("DataBase").Range("O1").Value = "" Then
+        wb.Worksheets("DataBase").Range("O1").Value = wb15.Worksheets("Sheet1").Range("A3").Value
+        wb.Worksheets("DataBase").Range("O2").Value = wb15.Worksheets("Sheet1").Range("A5").Value
+       lastRow = wb15.Worksheets("Sheet1").Range("D65536").End(xlUp).Row + 5
+         lastRowA = "O" & lastRow
+         lastRowD = "D" & lastRow
+         wb.Worksheets("DataBase").Range("O3:" & lastRowA).Value = wb15.Worksheets("Sheet1").Range("D9:" & lastRowD).Value
+         wb15.Close
+        End If
+        
+        
+            On Error GoTo GetOut
+   If wb.Worksheets("DataBase").Range("P1").Value = "" Then
+        wb.Worksheets("DataBase").Range("P1").Value = wb16.Worksheets("Sheet1").Range("A3").Value
+        wb.Worksheets("DataBase").Range("P2").Value = wb16.Worksheets("Sheet1").Range("A5").Value
+         lastRow = wb16.Worksheets("Sheet1").Range("D65536").End(xlUp).Row + 5
+         lastRowA = "P" & lastRow
+         lastRowD = "D" & lastRow
+         wb.Worksheets("DataBase").Range("P3:" & lastRowA).Value = wb16.Worksheets("Sheet1").Range("D9:" & lastRowD).Value
+         wb16.Close
+        End If
+        
+        
+            On Error GoTo GetOut
+   If wb.Worksheets("DataBase").Range("Q1").Value = "" Then
+        wb.Worksheets("DataBase").Range("Q1").Value = wb17.Worksheets("Sheet1").Range("A3").Value
+        wb.Worksheets("DataBase").Range("Q2").Value = wb17.Worksheets("Sheet1").Range("A5").Value
+         lastRow = wb17.Worksheets("Sheet1").Range("D65536").End(xlUp).Row + 5
+         lastRowA = "Q" & lastRow
+         lastRowD = "D" & lastRow
+         wb.Worksheets("DataBase").Range("Q3:" & lastRowA).Value = wb17.Worksheets("Sheet1").Range("D9:" & lastRowD).Value
+         wb17.Close
+        End If
+        
+        
+        
+            On Error GoTo GetOut
+   If wb.Worksheets("DataBase").Range("R1").Value = "" Then
+        wb.Worksheets("DataBase").Range("R1").Value = wb18.Worksheets("Sheet1").Range("A3").Value
+        wb.Worksheets("DataBase").Range("R2").Value = wb18.Worksheets("Sheet1").Range("A5").Value
+         lastRow = wb18.Worksheets("Sheet1").Range("D65536").End(xlUp).Row + 5
+         lastRowA = "R" & lastRow
+         lastRowD = "D" & lastRow
+         wb.Worksheets("DataBase").Range("R3:" & lastRowA).Value = wb18.Worksheets("Sheet1").Range("D9:" & lastRowD).Value
+         wb18.Close
+        End If
+        
+        
+        
+            On Error GoTo GetOut
+   If wb.Worksheets("DataBase").Range("S1").Value = "" Then
+        wb.Worksheets("DataBase").Range("S1").Value = wb19.Worksheets("Sheet1").Range("A3").Value
+        wb.Worksheets("DataBase").Range("S2").Value = wb19.Worksheets("Sheet1").Range("A5").Value
+         lastRow = wb19.Worksheets("Sheet1").Range("D65536").End(xlUp).Row + 5
+         lastRowA = "S" & lastRow
+         lastRowD = "D" & lastRow
+         wb.Worksheets("DataBase").Range("S3:" & lastRowA).Value = wb19.Worksheets("Sheet1").Range("D9:" & lastRowD).Value
+         wb19.Close
+        End If
+        
+        
+        
+            On Error GoTo GetOut
+   If wb.Worksheets("DataBase").Range("T1").Value = "" Then
+        wb.Worksheets("DataBase").Range("T1").Value = wb20.Worksheets("Sheet1").Range("A3").Value
+        wb.Worksheets("DataBase").Range("T2").Value = wb20.Worksheets("Sheet1").Range("A5").Value
+         lastRow = wb20.Worksheets("Sheet1").Range("D65536").End(xlUp).Row + 5
+         lastRowA = "T" & lastRow
+         lastRowD = "D" & lastRow
+         wb.Worksheets("DataBase").Range("T3:" & lastRowA).Value = wb20.Worksheets("Sheet1").Range("D9:" & lastRowD).Value
+         wb20.Close
+        End If
+        
+        
+        
+        
+         On Error GoTo GetOut
+   If wb.Worksheets("DataBase").Range("U1").Value = "" Then
+        wb.Worksheets("DataBase").Range("U1").Value = wb21.Worksheets("Sheet1").Range("A3").Value
+        wb.Worksheets("DataBase").Range("U2").Value = wb21.Worksheets("Sheet1").Range("A5").Value
+         lastRow = wb21.Worksheets("Sheet1").Range("D65536").End(xlUp).Row + 5
+         lastRowA = "U" & lastRow
+         lastRowD = "D" & lastRow
+         wb.Worksheets("DataBase").Range("U3:" & lastRowA).Value = wb21.Worksheets("Sheet1").Range("D9:" & lastRowD).Value
+         wb21.Close
+        End If
+        
+        
+        
+         On Error GoTo GetOut
+   If wb.Worksheets("DataBase").Range("V1").Value = "" Then
+        wb.Worksheets("DataBase").Range("V1").Value = wb22.Worksheets("Sheet1").Range("A3").Value
+        wb.Worksheets("DataBase").Range("V2").Value = wb22.Worksheets("Sheet1").Range("A5").Value
+         lastRow = wb22.Worksheets("Sheet1").Range("D65536").End(xlUp).Row + 5
+         lastRowA = "V" & lastRow
+         lastRowD = "D" & lastRow
+         wb.Worksheets("DataBase").Range("V3:" & lastRowA).Value = wb22.Worksheets("Sheet1").Range("D9:" & lastRowD).Value
+         wb22.Close
+        End If
+        
+        
+         On Error GoTo GetOut
+   If wb.Worksheets("DataBase").Range("W1").Value = "" Then
+        wb.Worksheets("DataBase").Range("W1").Value = wb23.Worksheets("Sheet1").Range("A3").Value
+        wb.Worksheets("DataBase").Range("W2").Value = wb23.Worksheets("Sheet1").Range("A5").Value
+        lastRow = wb23.Worksheets("Sheet1").Range("D65536").End(xlUp).Row + 5
+         lastRowA = "W" & lastRow
+         lastRowD = "D" & lastRow
+         wb.Worksheets("DataBase").Range("W3:" & lastRowA).Value = wb23.Worksheets("Sheet1").Range("D9:" & lastRowD).Value
+         wb23.Close
+        End If
+        
+         On Error GoTo GetOut
+   If wb.Worksheets("DataBase").Range("X1").Value = "" Then
+        wb.Worksheets("DataBase").Range("X1").Value = wb24.Worksheets("Sheet1").Range("A3").Value
+        wb.Worksheets("DataBase").Range("X2").Value = wb24.Worksheets("Sheet1").Range("A5").Value
+         lastRow = wb24.Worksheets("Sheet1").Range("D65536").End(xlUp).Row + 5
+         lastRowA = "X" & lastRow
+         lastRowD = "D" & lastRow
+         wb.Worksheets("DataBase").Range("X3:" & lastRowA).Value = wb24.Worksheets("Sheet1").Range("D9:" & lastRowD).Value
+         wb24.Close
+        End If
+        
+         On Error GoTo GetOut
+   If wb.Worksheets("DataBase").Range("Y1").Value = "" Then
+        wb.Worksheets("DataBase").Range("Y1").Value = wb25.Worksheets("Sheet1").Range("A3").Value
+        wb.Worksheets("DataBase").Range("Y2").Value = wb25.Worksheets("Sheet1").Range("A5").Value
+        lastRow = wb25.Worksheets("Sheet1").Range("D65536").End(xlUp).Row + 5
+         lastRowA = "Y" & lastRow
+         lastRowD = "D" & lastRow
+         wb.Worksheets("DataBase").Range("Y3:" & lastRowA).Value = wb25.Worksheets("Sheet1").Range("D9:" & lastRowD).Value
+         wb25.Close
+        End If
+        
+        
+         On Error GoTo GetOut
+   If wb.Worksheets("DataBase").Range("Z1").Value = "" Then
+        wb.Worksheets("DataBase").Range("Z1").Value = wb26.Worksheets("Sheet1").Range("A3").Value
+        wb.Worksheets("DataBase").Range("Z2").Value = wb26.Worksheets("Sheet1").Range("A5").Value
+        lastRow = wb26.Worksheets("Sheet1").Range("D65536").End(xlUp).Row + 5
+         lastRowA = "Z" & lastRow
+         lastRowD = "D" & lastRow
+         wb.Worksheets("DataBase").Range("Z3:" & lastRowA).Value = wb26.Worksheets("Sheet1").Range("D9:" & lastRowD).Value
+         wb26.Close
+        End If
+        
+        
+         On Error GoTo GetOut
+   If wb.Worksheets("DataBase").Range("AA1").Value = "" Then
+        wb.Worksheets("DataBase").Range("AA1").Value = wb27.Worksheets("Sheet1").Range("A3").Value
+        wb.Worksheets("DataBase").Range("AA2").Value = wb27.Worksheets("Sheet1").Range("A5").Value
+        lastRow = wb27.Worksheets("Sheet1").Range("D65536").End(xlUp).Row + 5
+         lastRowA = "AA" & lastRow
+         lastRowD = "D" & lastRow
+         wb.Worksheets("DataBase").Range("AA3:" & lastRowA).Value = wb27.Worksheets("Sheet1").Range("D9:" & lastRowD).Value
+         wb27.Close
+        End If
+        
+        
+         On Error GoTo GetOut
+   If wb.Worksheets("DataBase").Range("AB1").Value = "" Then
+        wb.Worksheets("DataBase").Range("AB1").Value = wb28.Worksheets("Sheet1").Range("A3").Value
+        wb.Worksheets("DataBase").Range("AB2").Value = wb28.Worksheets("Sheet1").Range("A5").Value
+         lastRow = wb28.Worksheets("Sheet1").Range("D65536").End(xlUp).Row + 5
+         lastRowA = "AB" & lastRow
+         lastRowD = "D" & lastRow
+         wb.Worksheets("DataBase").Range("AB3:" & lastRowA).Value = wb28.Worksheets("Sheet1").Range("D9:" & lastRowD).Value
+         wb28.Close
+        End If
+        
+        
+         On Error GoTo GetOut
+   If wb.Worksheets("DataBase").Range("AC1").Value = "" Then
+        wb.Worksheets("DataBase").Range("AC1").Value = wb29.Worksheets("Sheet1").Range("A3").Value
+        wb.Worksheets("DataBase").Range("AC2").Value = wb29.Worksheets("Sheet1").Range("A5").Value
+        lastRow = wb29.Worksheets("Sheet1").Range("D65536").End(xlUp).Row + 5
+         lastRowA = "AC" & lastRow
+         lastRowD = "D" & lastRow
+         wb.Worksheets("DataBase").Range("AC3:" & lastRowA).Value = wb29.Worksheets("Sheet1").Range("D9:" & lastRowD).Value
+         wb29.Close
+        End If
+        
+      On Error GoTo GetOut
+   If wb.Worksheets("DataBase").Range("AD1").Value = "" Then
+        wb.Worksheets("DataBase").Range("AD1").Value = wb30.Worksheets("Sheet1").Range("A3").Value
+        wb.Worksheets("DataBase").Range("AD2").Value = wb30.Worksheets("Sheet1").Range("A5").Value
+        lastRow = wb30.Worksheets("Sheet1").Range("D65536").End(xlUp).Row + 5
+         lastRowA = "AD" & lastRow
+         lastRowD = "D" & lastRow
+         wb.Worksheets("DataBase").Range("AD3:" & lastRowA).Value = wb30.Worksheets("Sheet1").Range("D9:" & lastRowD).Value
+         wb30.Close
+        End If
+  
+         
+         
+         
+          
+
+
+GetOut:
+    On Error GoTo Label_1
+    ActiveSheet.Range("A:A").RemoveDuplicates Columns:=1, Header:=xlNo
+    ActiveSheet.Range("B:B").RemoveDuplicates Columns:=1, Header:=xlNo
+    ActiveSheet.Range("C:C").RemoveDuplicates Columns:=1, Header:=xlNo
+    ActiveSheet.Range("D:D").RemoveDuplicates Columns:=1, Header:=xlNo
+    ActiveSheet.Range("E:E").RemoveDuplicates Columns:=1, Header:=xlNo
+    
+    ActiveSheet.Range("F:F").RemoveDuplicates Columns:=1, Header:=xlNo
+    ActiveSheet.Range("G:G").RemoveDuplicates Columns:=1, Header:=xlNo
+    ActiveSheet.Range("H:H").RemoveDuplicates Columns:=1, Header:=xlNo
+    ActiveSheet.Range("I:I").RemoveDuplicates Columns:=1, Header:=xlNo
+    ActiveSheet.Range("J:J").RemoveDuplicates Columns:=1, Header:=xlNo
+    
+    ActiveSheet.Range("K:K").RemoveDuplicates Columns:=1, Header:=xlNo
+    ActiveSheet.Range("L:L").RemoveDuplicates Columns:=1, Header:=xlNo
+    ActiveSheet.Range("M:M").RemoveDuplicates Columns:=1, Header:=xlNo
+    ActiveSheet.Range("N:N").RemoveDuplicates Columns:=1, Header:=xlNo
+    ActiveSheet.Range("O:O").RemoveDuplicates Columns:=1, Header:=xlNo
+    
+    ActiveSheet.Range("P:P").RemoveDuplicates Columns:=1, Header:=xlNo
+    ActiveSheet.Range("Q:Q").RemoveDuplicates Columns:=1, Header:=xlNo
+    ActiveSheet.Range("R:R").RemoveDuplicates Columns:=1, Header:=xlNo
+    ActiveSheet.Range("S:S").RemoveDuplicates Columns:=1, Header:=xlNo
+    ActiveSheet.Range("T:T").RemoveDuplicates Columns:=1, Header:=xlNo
+        
+    ActiveSheet.Range("U:U").RemoveDuplicates Columns:=1, Header:=xlNo
+    ActiveSheet.Range("V:V").RemoveDuplicates Columns:=1, Header:=xlNo
+    ActiveSheet.Range("W:W").RemoveDuplicates Columns:=1, Header:=xlNo
+    ActiveSheet.Range("X:X").RemoveDuplicates Columns:=1, Header:=xlNo
+    ActiveSheet.Range("Y:Y").RemoveDuplicates Columns:=1, Header:=xlNo
+        
+    ActiveSheet.Range("Z:Z").RemoveDuplicates Columns:=1, Header:=xlNo
+    ActiveSheet.Range("AA:AA").RemoveDuplicates Columns:=1, Header:=xlNo
+    ActiveSheet.Range("AB:AB").RemoveDuplicates Columns:=1, Header:=xlNo
+    ActiveSheet.Range("AC:AC").RemoveDuplicates Columns:=1, Header:=xlNo
+    ActiveSheet.Range("AD:AD").RemoveDuplicates Columns:=1, Header:=xlNo
+    
+    Call Start_btn
+
+   Exit Sub
+    If K <> 1 Then
+Label_1:
+        ActiveWorkbook.Close
+        MsgBox ("A?aoii eca?ai oaee")
+        Exit Sub
+    End If
+    '------------------------------------------------
+    Application.ScreenUpdating = True
+    Application.DisplayAlerts = True
+    Application.EnableEvents = True
+    Application.Calculation = xlCalculationAutomatic
+    '------------------------------------------------
+    
+End Sub
+
+
+Sub Find_Blank()
+'
+' Find_Blank Macro
+'
+
+'
+    Range(Selection, Selection.End(xlDown)).Select
+    ActiveWindow.SmallScroll Down:=9
+End Sub
+Sub Clear_Labels()
+'
+Dim book As Workbook
+Dim A3_sheet As Worksheet
+Dim Print_sheet As Worksheet
+Set book = ActiveWorkbook
+Set A3_sheet = book.Sheets("A3Label")
+Set Print_sheet = book.Sheets("Print")
+' Clear_Labels Macro
+'
+   Print_sheet.Select
+   Print_sheet.Range("B6:ZO41").Select
+'
+    With Selection
+    
+        .HorizontalAlignment = xlGeneral
+        .VerticalAlignment = xlCenter
+        .WrapText = False
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = True
+    End With
+    With Selection.Font
+        .Name = "Arial"
+        .Size = 14
+    End With
+    Selection.UnMerge
+    With Selection.Interior
+        .Pattern = xlNone
+        .TintAndShade = 0
+        .PatternTintAndShade = 0
+    End With
+    
+    Selection.borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.borders(xlDiagonalUp).LineStyle = xlNone
+    Selection.borders(xlEdgeLeft).LineStyle = xlNone
+    Selection.borders(xlEdgeTop).LineStyle = xlNone
+    Selection.borders(xlEdgeBottom).LineStyle = xlNone
+    Selection.borders(xlEdgeRight).LineStyle = xlNone
+    Selection.borders(xlInsideVertical).LineStyle = xlNone
+    Selection.borders(xlInsideHorizontal).LineStyle = xlNone
+    Selection.ClearContents
+       A3_sheet.Select
+  '  With ActiveWorkbook.Worksheets("A3Label")
+       A3_sheet.Range("A1:AB50").Select
+
+    With Selection
+
+        .HorizontalAlignment = xlGeneral
+        .VerticalAlignment = xlCenter
+        .WrapText = False
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = True
+    End With
+    With Selection.Font
+        .Name = "Arial"
+        .Size = 12
+    End With
+    Selection.UnMerge
+    With Selection.Interior
+        .Pattern = xlNone
+        .TintAndShade = 0
+        .PatternTintAndShade = 0
+    End With
+
+    Selection.borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.borders(xlDiagonalUp).LineStyle = xlNone
+    Selection.borders(xlEdgeLeft).LineStyle = xlNone
+    Selection.borders(xlEdgeTop).LineStyle = xlNone
+    Selection.borders(xlEdgeBottom).LineStyle = xlNone
+    Selection.borders(xlEdgeRight).LineStyle = xlNone
+    Selection.borders(xlInsideVertical).LineStyle = xlNone
+    Selection.borders(xlInsideHorizontal).LineStyle = xlNone
+    Selection.ClearContents
+    SendKeys "{ESC}"
+  '  End With
+End Sub
+
+
+Sub A3Labeling()
+Call Clear_Labels
+Dim DB_Hor As Integer
+Dim A3_Ver As Integer
+Dim lastColumn As Long
+Dim A3_sheet As Worksheet
+Dim DB_Sheet As Worksheet
+Dim celltxB7 As String
+Dim lab_ver As Integer
+Dim A3_Hor, GroupQ As Integer
+
+celltxtB7 = ActiveWorkbook.Worksheets("Menu").Range("B2").Value
+cubx1 = ActiveWorkbook.Worksheets("DataBase").Range("A3").Value ' ADI? OAAEA
+'Set A3_sheet = ActiveWorkbook.Worksheets.Item("A3Label")
+Set A3_sheet = ActiveWorkbook.Worksheets.Item("A3Label")
+Set DB_Sheet = ActiveWorkbook.Sheets("DataBase")
+'lastColumn = DB_Sheet.Cells(1, 30).End(xlToLeft).Column
+DB_Hor = 1
+A3_Ver = 1
+lab_ver = 1
+
+A3_Hor = 1
+'MsgBox lastColumn
+GroupQ = 1
+For i = 1 To cubx1
+    DB_Sheet.Range("AH2:AP6").Copy
+ ' MsgBox "doing a3label FOR LOOP, i = " & i & " cubx1 = " & cubx1
+    A3_sheet.Cells(A3_Ver, A3_Hor).PasteSpecial
+     A3_sheet.Range(Cells(A3_Ver + 4, A3_Hor), Cells(A3_Ver + 1, A3_Hor + 7)).Select
+     If InStr(1, celltxtB7, "L3") Then
+      '  MsgBox "ioaaoyaa a i?aiaaai"
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .ThemeColor = xlThemeColorAccent2
+        .TintAndShade = 0
+        .PatternTintAndShade = 0
+    End With
+      
+     ElseIf InStr(1, celltxtB7, "L2") Then
+       ' MsgBox "ioaaoyaa a caeaii"
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = RGB(54, 234, 54)
+        .TintAndShade = 0
+        .PatternTintAndShade = 0
+    End With
+   
+     ElseIf InStr(1, celltxtB7, "L1") Then
+       ' MsgBox "ioaaoyaa a aueoi"
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 65535
+        .TintAndShade = 0
+        .PatternTintAndShade = 0
+    End With
+    
+     ElseIf InStr(1, celltxtB7, "L4") Then
+       ' MsgBox "ioaaoyaa a neiui"
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = RGB(52, 204, 255)
+        .TintAndShade = 0
+        .PatternTintAndShade = 0
+    End With
+    
+    End If
+    SendKeys "{ESC}"
+
+
+A3_sheet.Cells(A3_Ver + 2, A3_Hor + 2) = ActiveWorkbook.Sheets("Menu").Cells(3, 2) ' IDIAEO IIIAD
+A3_sheet.Cells(A3_Ver + 2, A3_Hor + 4) = DB_Sheet.Range("A55").Value ' EIA IA IDIAEO
+A3_sheet.Cells(A3_Ver + 2, A3_Hor + 7) = DB_Sheet.Cells(59 + GroupQ, 2) ' IIIAD IA OAAEI
+
+      
+
+DB_Hor = DB_Hor + 1
+A3_Ver = A3_Ver + 5
+lab_ver = lab_ver + 1
+GroupQ = GroupQ + 1
+If lab_ver >= 11 Then
+A3_Hor = A3_Hor + 9
+A3_Ver = 1
+lab_ver = 1
+End If
+
+Next i
+
+End Sub
+
+
+Sub A3LabelingAuto()
+
+Dim DB_Hor As Integer
+Dim A3_Ver As Integer
+Dim lastColumn As Long
+Dim A3_sheet As Worksheet
+Dim DB_Sheet As Worksheet
+Dim celltxB7 As String
+Dim lab_ver As Integer
+Dim A3_Hor As Integer
+celltxtB7 = ActiveWorkbook.Worksheets("Menu").Range("B2").Value
+Set A3_sheet = ActiveWorkbook.Worksheets.Item("A3Label")
+Set DB_Sheet = ActiveWorkbook.Sheets("DataBase")
+lastColumn = DB_Sheet.Cells(1, 30).End(xlToLeft).Column
+DB_Hor = 1
+A3_Ver = 1
+lab_ver = 1
+
+A3_Hor = 1
+'MsgBox lastColumn
+
+For i = 1 To lastColumn
+    DB_Sheet.Range("AH2:AP6").Copy
+    A3_sheet.Cells(A3_Ver, A3_Hor).PasteSpecial
+     A3_sheet.Range(Cells(A3_Ver + 4, A3_Hor), Cells(A3_Ver + 1, A3_Hor + 7)).Select
+     If InStr(1, celltxtB7, "L3") Then
+      '  MsgBox "ioaaoyaa a i?aiaaai"
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .ThemeColor = xlThemeColorAccent2
+        .TintAndShade = 0
+        .PatternTintAndShade = 0
+    End With
+      
+     ElseIf InStr(1, celltxtB7, "L2") Then
+       ' MsgBox "ioaaoyaa a caeaii"
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = RGB(54, 234, 54)
+        .TintAndShade = 0
+        .PatternTintAndShade = 0
+    End With
+   
+     ElseIf InStr(1, celltxtB7, "L1") Then
+       ' MsgBox "ioaaoyaa a aueoi"
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 65535
+        .TintAndShade = 0
+        .PatternTintAndShade = 0
+    End With
+    
+    
+         ElseIf InStr(1, celltxtB7, "L4") Then
+       ' MsgBox "ioaaoyaa a neiui"
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+         .Color = RGB(52, 204, 255)
+        .TintAndShade = 0
+        .PatternTintAndShade = 0
+    End With
+    
+    End If
+    SendKeys "{ESC}"
+
+
+A3_sheet.Cells(A3_Ver + 2, A3_Hor + 2) = ActiveWorkbook.Sheets("Menu").Cells(3, 2)
+A3_sheet.Cells(A3_Ver + 2, A3_Hor + 4) = DB_Sheet.Cells(1, DB_Hor)
+A3_sheet.Cells(A3_Ver + 2, A3_Hor + 7) = DB_Sheet.Cells(2, DB_Hor)
+
+      
+
+DB_Hor = DB_Hor + 1
+A3_Ver = A3_Ver + 5
+lab_ver = lab_ver + 1
+
+If lab_ver >= 11 Then
+A3_Hor = A3_Hor + 9
+A3_Ver = 1
+lab_ver = 1
+End If
+
+Next i
+ActiveWorkbook.Sheets("Menu").Select
+End Sub

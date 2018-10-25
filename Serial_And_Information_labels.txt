@@ -1,0 +1,256 @@
+Sub Menu_btn()
+
+
+Call RoundedRectangle3_Click
+
+  
+ Menu_UF.Pr_num.Value = ActiveWorkbook.Worksheets("DataBase").Range("I1").Value    'project #
+ Menu_UF.Pr_Name.Value = ActiveWorkbook.Worksheets("DataBase").Range("I2").Value
+ Menu_UF.Cubicles.Value = ActiveWorkbook.Worksheets("DataBase").Range("I3").Value
+ CD_Numbering_UF.TextBox2.Value = ActiveWorkbook.Worksheets("DataBase").Range("I4").Value
+
+
+Menu_UF.Show
+End Sub
+Sub RoundedRectangle3_Click()
+
+     With ActiveWorkbook.Worksheets("Menu").Shapes("Rounded Rectangle 3").Fill
+ If ActiveWorkbook.Worksheets("Menu").Shapes("Rounded Rectangle 3").Fill.GradientStops(1).Color = RGB(83, 173, 255) Then
+        .TwoColorGradient msoGradientHorizontal, 1
+        With .GradientStops(1)
+            .Color = RGB(123, 255, 87)
+            .Position = 0
+            .Transparency = 0
+        End With
+        With .GradientStops(2)
+            .Color = RGB(54, 252, 0)
+            .Position = 1
+            .Transparency = 0
+        End With
+        .GradientStops.Insert RGB:=RGB(42, 196, 0), Position:=0.5, Transparency:=0
+        .Visible = msoTrue
+        clicked = 1
+     
+       ElseIf ActiveWorkbook.Worksheets("Menu").Shapes("Rounded Rectangle 3").Fill.GradientStops(1).Color = RGB(123, 255, 87) Then
+    .TwoColorGradient msoGradientHorizontal, 1
+        With .GradientStops(1)
+            .Color = RGB(83, 173, 255)
+            .Position = 0
+            .Transparency = 0
+        End With
+        With .GradientStops(2)
+            .Color = RGB(0, 94, 180)
+            .Position = 1
+            .Transparency = 0
+        End With
+        .GradientStops.Insert RGB:=RGB(0, 94, 180), Position:=0.5, Transparency:=0
+        .Visible = msoTrue
+       End If
+    End With
+   
+    
+    
+End Sub
+
+
+Sub RoundedRectangle6_Click()
+
+     With ActiveWorkbook.Worksheets("Menu").Shapes("Rounded Rectangle 6").Fill
+ If ActiveWorkbook.Worksheets("Menu").Shapes("Rounded Rectangle 6").Fill.GradientStops(1).Color = RGB(83, 173, 255) Then
+        .TwoColorGradient msoGradientHorizontal, 1
+        With .GradientStops(1)
+            .Color = RGB(123, 255, 87)
+            .Position = 0
+            .Transparency = 0
+        End With
+        With .GradientStops(2)
+            .Color = RGB(54, 252, 0)
+            .Position = 1
+            .Transparency = 0
+        End With
+        .GradientStops.Insert RGB:=RGB(42, 196, 0), Position:=0.5, Transparency:=0
+        .Visible = msoTrue
+        clicked = 1
+     
+       ElseIf ActiveWorkbook.Worksheets("Menu").Shapes("Rounded Rectangle 6").Fill.GradientStops(1).Color = RGB(123, 255, 87) Then
+    .TwoColorGradient msoGradientHorizontal, 1
+        With .GradientStops(1)
+            .Color = RGB(83, 173, 255)
+            .Position = 0
+            .Transparency = 0
+        End With
+        With .GradientStops(2)
+            .Color = RGB(0, 94, 180)
+            .Position = 1
+            .Transparency = 0
+        End With
+        .GradientStops.Insert RGB:=RGB(0, 94, 180), Position:=0.5, Transparency:=0
+        .Visible = msoTrue
+       End If
+    End With
+End Sub
+Sub RoundedRectangle4_Click()
+
+     With ActiveWorkbook.Worksheets("Menu").Shapes("Rounded Rectangle 4").Fill
+ If ActiveWorkbook.Worksheets("Menu").Shapes("Rounded Rectangle 4").Fill.GradientStops(1).Color = RGB(83, 173, 255) Then
+        .TwoColorGradient msoGradientHorizontal, 1
+        With .GradientStops(1)
+            .Color = RGB(123, 255, 87)
+            .Position = 0
+            .Transparency = 0
+        End With
+        With .GradientStops(2)
+            .Color = RGB(54, 252, 0)
+            .Position = 1
+            .Transparency = 0
+        End With
+        .GradientStops.Insert RGB:=RGB(42, 196, 0), Position:=0.5, Transparency:=0
+        .Visible = msoTrue
+        clicked = 1
+     
+       ElseIf ActiveWorkbook.Worksheets("Menu").Shapes("Rounded Rectangle 4").Fill.GradientStops(1).Color = RGB(123, 255, 87) Then
+    .TwoColorGradient msoGradientHorizontal, 1
+        With .GradientStops(1)
+            .Color = RGB(83, 173, 255)
+            .Position = 0
+            .Transparency = 0
+        End With
+        With .GradientStops(2)
+            .Color = RGB(0, 94, 180)
+            .Position = 1
+            .Transparency = 0
+        End With
+        .GradientStops.Insert RGB:=RGB(0, 94, 180), Position:=0.5, Transparency:=0
+        .Visible = msoTrue
+       End If
+    End With
+    
+End Sub
+
+Sub LCC_Serial_Number()
+
+Dim cubx1 As Integer
+Dim str As String
+Dim x As Long
+Dim CubDes As String
+
+
+
+
+str = ActiveWorkbook.Worksheets("DataBase").Range("A11").Text
+
+ActiveWorkbook.Worksheets("LCC Serial Number").Range("A2:H2000").Clear
+
+
+cubx1 = ActiveWorkbook.Worksheets("DataBase").Range("A3")
+For x = 2 To cubx1 + 1
+
+        ActiveWorkbook.Worksheets("LCC Serial Number").Range("A" & x) = "LCC serial number plate"
+        ActiveWorkbook.Worksheets("LCC Serial Number").Range("B" & x) = ActiveWorkbook.Worksheets("DataBase").Range("A1") 'acaia iiia?a ia i?iaeoa
+        ActiveWorkbook.Worksheets("LCC Serial Number").Range("C" & x) = ActiveWorkbook.Worksheets("DataBase").Range("D" & x) 'acaia 1oac
+        ActiveWorkbook.Worksheets("LCC Serial Number").Range("D" & x) = ActiveWorkbook.Worksheets("DataBase").Range("C" & x) 'acaia iiia? ia oaaeioi
+        ActiveWorkbook.Worksheets("LCC Serial Number").Range("E" & x) = ActiveWorkbook.Worksheets("DataBase").Range("A4") & "V DC" 'control voltage
+        ActiveWorkbook.Worksheets("LCC Serial Number").Range("F" & x) = ActiveWorkbook.Worksheets("DataBase").Range("A5") & "V AC" ' ac voltage
+        ActiveWorkbook.Worksheets("LCC Serial Number").Range("G" & x) = Year(Date)  'aiaeia
+        If x < 11 Then
+        ActiveWorkbook.Worksheets("LCC Serial Number").Range("H" & x) = Right(str, 4) & "0" & ActiveWorkbook.Worksheets("DataBase").Range("B" & x)
+        Else
+        ActiveWorkbook.Worksheets("LCC Serial Number").Range("H" & x) = Right(str, 4) & ActiveWorkbook.Worksheets("DataBase").Range("B" & x)
+        End If
+    Next x
+
+
+
+'ActiveWorkbook.Worksheets("LCC Serial Number").Select
+
+
+
+End Sub
+
+
+Sub Information_Labels()
+
+Dim cubx1 As Integer
+
+Dim x As Long
+Dim y As Long
+Dim y2 As Long
+Dim y3 As Long
+Dim y4 As Long
+Dim y5 As Long
+Dim counter As Long
+Dim FS As Long
+Dim LS As Long
+Dim RS As Long
+Dim LD As Long
+Dim RD As Long
+Dim ver As Long
+cubx1 = ActiveWorkbook.Worksheets("DataBase").Range("A3")
+
+ActiveWorkbook.Worksheets("Information Label").Range("A2:M2000").Clear
+
+LS = ActiveWorkbook.Worksheets("DataBase").Range("A6")  ' LS.Value
+FS = ActiveWorkbook.Worksheets("DataBase").Range("A7")  ' FS.Value
+RS = ActiveWorkbook.Worksheets("DataBase").Range("A8")  ' RS.Value
+LD = ActiveWorkbook.Worksheets("DataBase").Range("A9")  ' LD.Value
+RD = ActiveWorkbook.Worksheets("DataBase").Range("A10")  'RD.Value
+
+'MsgBox "LS: " & ActiveWorkbook.Worksheets("DataBase").Range("A6") & "FS: " & ActiveWorkbook.Worksheets("DataBase").Range("A7") & "RS: " & ActiveWorkbook.Worksheets("DataBase").Range("A8") & "LD: " & ActiveWorkbook.Worksheets("DataBase").Range("A9") & "RD: " & ActiveWorkbook.Worksheets("DataBase").Range("A10")
+'counter = ActiveWorkbook.Worksheets("DataBase").Range("A6") + ActiveWorkbook.Worksheets("DataBase").Range("A7") + ActiveWorkbook.Worksheets("DataBase").Range("A8") + ActiveWorkbook.Worksheets("DataBase").Range("A9") + ActiveWorkbook.Worksheets("DataBase").Range("A10")
+'MsgBox "Counter: " & counter
+For x = 2 To cubx1 + 1
+ ActiveWorkbook.Worksheets("Information Label").Range("F" & x) = "IL-RC"
+ ActiveWorkbook.Worksheets("Information Label").Range("G" & x) = ActiveWorkbook.Worksheets("DataBase").Range("A1")
+ ActiveWorkbook.Worksheets("Information Label").Range("H" & x) = ActiveWorkbook.Worksheets("DataBase").Range("A2") & " " & ActiveWorkbook.Worksheets("DataBase").Range("C" & x)
+
+ ActiveWorkbook.Worksheets("Information Label").Range("K" & x) = "IL-TC"
+ ActiveWorkbook.Worksheets("Information Label").Range("L" & x) = ActiveWorkbook.Worksheets("DataBase").Range("A1")
+ ActiveWorkbook.Worksheets("Information Label").Range("M" & x) = ActiveWorkbook.Worksheets("DataBase").Range("A2") & " " & ActiveWorkbook.Worksheets("DataBase").Range("C" & x)
+     For y = 1 To FS
+    'MsgBox " x + cubx1 * 2 + ver = " & x + cubx1 * 2 + ver
+        ActiveWorkbook.Worksheets("Information Label").Range("A" & x + ver) = "IL-rail"
+        ActiveWorkbook.Worksheets("Information Label").Range("B" & x + ver) = ActiveWorkbook.Worksheets("DataBase").Range("A1")
+        ActiveWorkbook.Worksheets("Information Label").Range("C" & x + ver) = ActiveWorkbook.Worksheets("DataBase").Range("A2") & " " & ActiveWorkbook.Worksheets("DataBase").Range("C" & x)
+        ActiveWorkbook.Worksheets("Information Label").Range("D" & x + ver) = "FS" & y
+        ver = ver + 1
+     Next y
+    For y2 = 1 To LS
+   
+        ActiveWorkbook.Worksheets("Information Label").Range("A" & x + ver) = "IL-rail"
+        ActiveWorkbook.Worksheets("Information Label").Range("B" & x + ver) = ActiveWorkbook.Worksheets("DataBase").Range("A1")
+        ActiveWorkbook.Worksheets("Information Label").Range("C" & x + ver) = ActiveWorkbook.Worksheets("DataBase").Range("A2") & " " & ActiveWorkbook.Worksheets("DataBase").Range("C" & x)
+        ActiveWorkbook.Worksheets("Information Label").Range("D" & x + ver) = "LS" & y2
+        ver = ver + 1
+     Next y2
+       For y3 = 1 To RS
+   
+        ActiveWorkbook.Worksheets("Information Label").Range("A" & x + ver) = "IL-rail"
+        ActiveWorkbook.Worksheets("Information Label").Range("B" & x + ver) = ActiveWorkbook.Worksheets("DataBase").Range("A1")
+        ActiveWorkbook.Worksheets("Information Label").Range("C" & x + ver) = ActiveWorkbook.Worksheets("DataBase").Range("A2") & " " & ActiveWorkbook.Worksheets("DataBase").Range("C" & x)
+        ActiveWorkbook.Worksheets("Information Label").Range("D" & x + ver) = "RS" & y3
+        ver = ver + 1
+     Next y3
+        For y4 = 1 To LD
+   
+        ActiveWorkbook.Worksheets("Information Label").Range("A" & x + ver) = "IL-rail"
+        ActiveWorkbook.Worksheets("Information Label").Range("B" & x + ver) = ActiveWorkbook.Worksheets("DataBase").Range("A1")
+        ActiveWorkbook.Worksheets("Information Label").Range("C" & x + ver) = ActiveWorkbook.Worksheets("DataBase").Range("A2") & " " & ActiveWorkbook.Worksheets("DataBase").Range("C" & x)
+        ActiveWorkbook.Worksheets("Information Label").Range("D" & x + ver) = "LD" & y4
+        ver = ver + 1
+     Next y4
+       For y5 = 1 To RD
+   
+        ActiveWorkbook.Worksheets("Information Label").Range("A" & x + ver) = "IL-rail"
+        ActiveWorkbook.Worksheets("Information Label").Range("B" & x + ver) = ActiveWorkbook.Worksheets("DataBase").Range("A1")
+        ActiveWorkbook.Worksheets("Information Label").Range("C" & x + ver) = ActiveWorkbook.Worksheets("DataBase").Range("A2") & " " & ActiveWorkbook.Worksheets("DataBase").Range("C" & x)
+        ActiveWorkbook.Worksheets("Information Label").Range("D" & x + ver) = "RD" & y5
+        ver = ver + 1
+     Next y5
+     
+  Next x
+
+
+
+
+
+End Sub

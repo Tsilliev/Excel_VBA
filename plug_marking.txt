@@ -1,0 +1,151 @@
+Sub Plug_Marking()
+'--------------------Speed up--------------------
+    Application.ScreenUpdating = False
+    Application.DisplayAlerts = False
+    Application.EnableEvents = False
+    Application.Calculation = xlCalculationManual
+    Application.AskToUpdateLinks = False
+'------------------------------------------------
+Dim x, y, c, d, a, f, Dcounter, lastrow, lastrowMul, lastrowMulN, lastRowClear As Long
+
+lastRowClear = Worksheets("Plug_Marking").Cells(Worksheets("Plug_Marking").Rows.Count, "A").End(xlUp).Row
+ActiveWorkbook.Worksheets("Plug_Marking").Range("A1" & ":" & "H" & lastRowClear).Clear
+
+lastrow = Worksheets("DB").Cells(Worksheets("Plug_Marking").Rows.Count, "A").End(xlUp).Row
+
+
+x = 7 '?aauo ia caaiaoa ia?ee?iaea
+
+
+
+
+
+For y = 2 To lastrow
+
+        
+        For c = x To x + 47
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("A" & c - 6) = ActiveWorkbook.Worksheets("DB").Range("V" & y) 'eiaoi ia i?iaeoa
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("D" & c - 6) = ActiveWorkbook.Worksheets("DB").Range("X" & 2) 'eiaoi ia ia?ee?iaeaoa
+        Next c
+        
+        'caaiaoa ia?ee?iaea
+        
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x) = ActiveWorkbook.Worksheets("DB").Range("O" & y)
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x + 12) = ActiveWorkbook.Worksheets("DB").Range("O" & y)
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x + 24) = ActiveWorkbook.Worksheets("DB").Range("O" & y)
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x + 36) = ActiveWorkbook.Worksheets("DB").Range("O" & y)
+        
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x + 1) = ActiveWorkbook.Worksheets("DB").Range("P" & y)
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x + 13) = ActiveWorkbook.Worksheets("DB").Range("P" & y)
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x + 25) = ActiveWorkbook.Worksheets("DB").Range("P" & y)
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x + 37) = ActiveWorkbook.Worksheets("DB").Range("P" & y)
+        
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x + 2) = ActiveWorkbook.Worksheets("DB").Range("Q" & y)
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x + 14) = ActiveWorkbook.Worksheets("DB").Range("Q" & y)
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x + 26) = ActiveWorkbook.Worksheets("DB").Range("Q" & y)
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x + 38) = ActiveWorkbook.Worksheets("DB").Range("Q" & y)
+        
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x + 3) = ActiveWorkbook.Worksheets("DB").Range("R" & y)
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x + 15) = ActiveWorkbook.Worksheets("DB").Range("R" & y)
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x + 27) = ActiveWorkbook.Worksheets("DB").Range("R" & y)
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x + 39) = ActiveWorkbook.Worksheets("DB").Range("R" & y)
+        
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x + 4) = ActiveWorkbook.Worksheets("DB").Range("S" & y)
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x + 16) = ActiveWorkbook.Worksheets("DB").Range("S" & y)
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x + 28) = ActiveWorkbook.Worksheets("DB").Range("S" & y)
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x + 40) = ActiveWorkbook.Worksheets("DB").Range("S" & y)
+        
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x + 5) = ActiveWorkbook.Worksheets("DB").Range("T" & y)
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x + 17) = ActiveWorkbook.Worksheets("DB").Range("T" & y)
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x + 29) = ActiveWorkbook.Worksheets("DB").Range("T" & y)
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x + 41) = ActiveWorkbook.Worksheets("DB").Range("T" & y)
+        
+        '?eneaoa
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x - 6) = 1
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x - 5) = 2
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x - 4) = 3
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x - 3) = 4
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x - 2) = 5
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x - 1) = 6
+        
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x + 6) = 7
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x + 7) = 8
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x + 8) = 9
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x + 9) = 10
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x + 10) = 11
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x + 11) = 12
+        
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x + 18) = 13
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x + 19) = 14
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x + 20) = 15
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x + 21) = 16
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x + 22) = 17
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x + 23) = 18
+        
+        
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x + 30) = 19
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x + 31) = 20
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x + 32) = 21
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x + 33) = 22
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x + 34) = 23
+        ActiveWorkbook.Worksheets("Plug_Marking").Range("B" & x + 35) = 24
+     
+        
+        x = x + 48
+     
+    Next y
+
+
+
+ActiveWorkbook.Worksheets("Plug_Marking").Select
+
+ '------------------------------------------------
+    Application.ScreenUpdating = True
+    Application.DisplayAlerts = True
+    Application.EnableEvents = True
+    Application.Calculation = xlCalculationAutomatic
+    Application.AskToUpdateLinks = True
+    '------------------------------------------------
+
+End Sub
+
+
+Sub Save_Btn()
+
+Dim wb As Workbook, InitFileName As String, fileSaveName As String
+Dim ProjectName As String
+ProjectName = ActiveWorkbook.Worksheets("DB").Range("V2")
+
+
+    InitFileName = "\Plug_Marking_" & ProjectName & "_" & Format(Date, "dd_mm_yy")
+     Sheets("Plug_Marking").Copy
+   ' MsgBox "thisworkbook path is: " & ThisWorkbook.Path
+    'MsgBox "message should/is: " & ThisWorkbook.Path & "\Serial_Number_" & ProjectName & "_" & Format(Date, "dd_mm_yy")
+   ' MsgBox "initfilename is: " & InitialFileName
+    Set wb = ActiveWorkbook
+      
+    fileSaveName = Application.GetSaveAsFilename(InitialFileName:=InitFileName, _
+    FileFilter:="Excel files , *.xlsx")
+   
+      With ActiveSheet.UsedRange
+        .Copy
+        .PasteSpecial xlValues
+        .PasteSpecial xlFormats
+    End With
+    
+    With wb
+        If fileSaveName <> "False" Then
+             
+            .SaveAs fileSaveName
+            .Close
+        Else
+            .Close False
+            Exit Sub
+        End If
+    End With
+    
+      
+    
+    
+    
+End Sub
